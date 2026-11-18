@@ -146,3 +146,14 @@ xxhash==4.0.1
 yarl==1.22.0
 zipp==3.23.1
 zstandard==0.25.0
+
+
+fastapi
+uvicorn
+mysql-connector-python
+python-dotenv
+python-multipart
+bcrypt
+PyJWT
+requests
+httpx
