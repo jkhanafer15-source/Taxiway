@@ -5,6 +5,7 @@ mysql-connector-python
 python-dotenv
 python-multipart
 bcrypt
+pwdlib[argon2]
 PyJWT
 requests
 httpx
