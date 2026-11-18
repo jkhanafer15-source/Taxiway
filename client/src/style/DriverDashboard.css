@@ -1,0 +1,769 @@
+
+/* ==========================================
+   TAXIWAY DRIVER DASHBOARD
+   COMPLETE DESIGN
+========================================== */
+
+* {
+  box-sizing: border-box;
+}
+
+.driver-page {
+  min-height: 100vh;
+  background: #f3f6fb;
+  padding: 35px 20px;
+  font-family: Arial, sans-serif;
+  color: #0f172a;
+}
+
+.driver-container {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.driver-card {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* ==========================================
+   HEADER
+========================================== */
+
+.driver-header,
+.driver-page .dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 25px;
+}
+
+.driver-header h1,
+.driver-page .dashboard-header h1 {
+  margin: 0 0 8px;
+  color: #172554;
+  font-size: 28px;
+  font-weight: 800;
+}
+
+.driver-header p,
+.driver-page .dashboard-header p {
+  color: #64748b;
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+.driver-logout,
+.driver-page .logout-button {
+  background: #fee2e2;
+  color: #b91c1c;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 14px;
+  transition: 0.2s ease;
+}
+
+.driver-logout:hover,
+.driver-page .logout-button:hover {
+  background: #fecaca;
+}
+
+/* ==========================================
+   SHARED CARDS
+========================================== */
+
+.driver-profile,
+.driver-table-card,
+.driver-login-card,
+.driver-page .profile-section,
+.driver-page .gps-section,
+.driver-page .students-section,
+.driver-page .gps-analysis-section {
+  background: white;
+  border-radius: 14px;
+  padding: 25px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  border: 1px solid #edf2f7;
+  margin-bottom: 24px;
+}
+
+.driver-profile h2,
+.driver-table-card h2,
+.driver-page .profile-section h2,
+.driver-page .gps-section h2,
+.driver-page .students-section h2,
+.driver-page .gps-analysis-section h2 {
+  margin-top: 0;
+  color: #1e3a8a;
+  font-size: 21px;
+  font-weight: 700;
+}
+
+.driver-page section > p {
+  color: #64748b;
+  line-height: 1.7;
+}
+
+/* ==========================================
+   DRIVER PROFILE
+========================================== */
+
+.driver-profile p,
+.driver-page .profile-section p {
+  color: #475569;
+  margin: 10px 0;
+  font-size: 14px;
+}
+
+.driver-page .profile-section strong {
+  color: #334155;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.driver-page .profile-section > div > div {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 17px;
+  transition: 0.2s ease;
+}
+
+.driver-page .profile-section > div > div:hover {
+  background: #eff6ff;
+  border-color: #bfdbfe;
+}
+
+.driver-page .profile-section > div > div p {
+  color: #172554;
+  font-size: 15px;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+/* ==========================================
+   DRIVER STATISTICS
+========================================== */
+
+.driver-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin: 25px 0;
+}
+
+.driver-stat {
+  background: white;
+  border-radius: 12px;
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+}
+
+.driver-stat span {
+  font-size: 14px;
+  color: #64748b;
+}
+
+.driver-stat strong {
+  font-size: 25px;
+  color: #1e40af;
+}
+
+/* ==========================================
+   BUTTONS
+========================================== */
+
+.driver-search button,
+.driver-primary-button,
+.driver-page .gps-section button,
+.driver-page .students-section button,
+.driver-page .gps-analysis-section button {
+  background: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 22px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 14px;
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.driver-search button:hover,
+.driver-primary-button:hover,
+.driver-page .gps-section button:hover:not(:disabled),
+.driver-page .students-section button:hover:not(:disabled),
+.driver-page .gps-analysis-section button:hover:not(:disabled) {
+  background: #1d4ed8;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.18);
+}
+
+.driver-search button:disabled,
+.driver-primary-button:disabled,
+.driver-page .gps-section button:disabled,
+.driver-page .students-section button:disabled,
+.driver-page .gps-analysis-section button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* ==========================================
+   GPS LOCATION SECTION
+========================================== */
+
+.driver-page .gps-section {
+  border-left: 4px solid #2563eb;
+}
+
+.driver-page .gps-section h2 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.driver-page .gps-section p {
+  font-size: 14px;
+  color: #475569;
+  margin: 12px 0;
+}
+
+.driver-page .gps-section p strong {
+  color: #172554;
+}
+
+.driver-page .gps-section a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 18px;
+  border-radius: 8px;
+  background: #eff6ff;
+  color: #1d4ed8;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 14px;
+  transition: 0.2s ease;
+}
+
+.driver-page .gps-section a:hover {
+  background: #dbeafe;
+}
+
+/* ==========================================
+   SEARCH
+========================================== */
+
+.driver-search {
+  display: flex;
+  gap: 12px;
+  margin: 20px 0;
+}
+
+.driver-search input,
+.driver-login-card input,
+.driver-filter select,
+.driver-page .students-section input[type="search"] {
+  padding: 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font-size: 15px;
+  background: white;
+  color: #0f172a;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.driver-search input,
+.driver-page .students-section input[type="search"] {
+  flex: 1;
+  min-width: 0;
+}
+
+.driver-search input:focus,
+.driver-login-card input:focus,
+.driver-filter select:focus,
+.driver-page .students-section input[type="search"]:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.driver-filter {
+  margin-bottom: 18px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.driver-filter label {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+/* ==========================================
+   STUDENT TABLE
+========================================== */
+
+.driver-table-scroll,
+.driver-page .students-section div[style*="overflow"] {
+  width: 100%;
+  overflow-x: auto;
+  border-radius: 10px;
+}
+
+.driver-table,
+.driver-page .students-section table {
+  width: 100%;
+  min-width: 1050px;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.driver-table th,
+.driver-page .students-section table th {
+  background: #f1f5f9;
+  color: #334155;
+  padding: 15px 12px;
+  font-size: 13px;
+  font-weight: 700;
+  white-space: nowrap;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.driver-table td,
+.driver-page .students-section table td {
+  padding: 15px 12px;
+  border-bottom: 1px solid #e2e8f0;
+  color: #475569;
+  font-size: 14px;
+  vertical-align: middle;
+}
+
+.driver-table tbody tr:hover,
+.driver-page .students-section table tbody tr:hover {
+  background: #f8fafc;
+}
+
+.driver-table a,
+.driver-page .students-section table a {
+  color: #2563eb;
+  text-decoration: none;
+  white-space: nowrap;
+  font-weight: 600;
+}
+
+.driver-table a:hover,
+.driver-page .students-section table a:hover {
+  text-decoration: underline;
+}
+
+.status-yes,
+.status-neutral {
+  display: inline-block;
+  padding: 6px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+.status-yes {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.status-neutral {
+  background: #f1f5f9;
+  color: #475569;
+}
+
+/* ==========================================
+   PAGINATION
+========================================== */
+
+.driver-pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  margin-top: 24px;
+}
+
+.driver-pagination button,
+.driver-page .students-section button:disabled {
+  border-radius: 8px;
+}
+
+.driver-pagination button {
+  padding: 10px 18px;
+  background: #e2e8f0;
+  color: #1e293b;
+  border: none;
+  cursor: pointer;
+}
+
+.driver-pagination button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.driver-table-note {
+  color: #64748b;
+  font-size: 13px;
+  text-align: center;
+}
+
+/* ==========================================
+   OPENROUTESERVICE ANALYSIS
+========================================== */
+
+.driver-page .gps-analysis-section {
+  border-top: 4px solid #2563eb;
+}
+
+.driver-page .gps-analysis-section > h2 {
+  color: #172554;
+  margin-bottom: 12px;
+  font-size: 23px;
+}
+
+.driver-page .gps-analysis-section > p {
+  color: #64748b;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.driver-page .gps-analysis-section > button {
+  margin-top: 14px;
+  padding: 14px 24px;
+  font-size: 15px;
+}
+
+/* Analysis company heading */
+
+.driver-page .gps-analysis-section h3 {
+  color: #1e3a8a;
+  font-size: 18px;
+  margin-bottom: 14px;
+}
+
+.driver-page .gps-analysis-section > div > p {
+  color: #64748b;
+  font-size: 14px;
+}
+
+/* ==========================================
+   NEAREST + FARTHEST STUDENT CARDS
+========================================== */
+
+.driver-page .gps-analysis-section
+div[style*="grid-template-columns"]
+> div {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  transition: 0.2s ease;
+}
+
+.driver-page .gps-analysis-section
+div[style*="grid-template-columns"]
+> div:hover {
+  background: #eff6ff;
+  border-color: #bfdbfe;
+  transform: translateY(-2px);
+}
+
+.driver-page .gps-analysis-section
+div[style*="grid-template-columns"]
+> div h3 {
+  font-size: 15px;
+  color: #64748b;
+  margin-top: 0;
+}
+
+.driver-page .gps-analysis-section
+div[style*="grid-template-columns"]
+> div h4 {
+  color: #172554;
+  font-size: 23px;
+  margin: 10px 0;
+}
+
+.driver-page .gps-analysis-section
+div[style*="grid-template-columns"]
+> div p {
+  color: #475569;
+  font-size: 14px;
+  margin: 10px 0;
+}
+
+/* ==========================================
+   DISTANCE RANKING TABLE
+========================================== */
+
+.driver-page .gps-analysis-section table {
+  width: 100%;
+  min-width: 650px;
+  border-collapse: collapse;
+  text-align: left;
+  background: #ffffff;
+  border-radius: 10px;
+}
+
+.driver-page .gps-analysis-section table th {
+  background: #eff6ff;
+  color: #1e3a8a;
+  font-weight: 700;
+  padding: 15px 14px;
+  font-size: 13px;
+  border-bottom: 1px solid #dbeafe;
+  white-space: nowrap;
+}
+
+.driver-page .gps-analysis-section table td {
+  padding: 15px 14px;
+  color: #475569;
+  font-size: 14px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.driver-page .gps-analysis-section table tbody tr:hover {
+  background: #f8fafc;
+}
+
+.driver-page .gps-analysis-section table td:first-child {
+  color: #2563eb;
+  font-weight: 700;
+}
+
+/* ==========================================
+   PICKUP SCHEDULE
+========================================== */
+
+.driver-page .gps-analysis-section table tbody td:nth-child(3) {
+  font-weight: 600;
+}
+
+.driver-page .gps-analysis-section
+table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* ==========================================
+   TOTAL JOURNEY CARD
+========================================== */
+
+.driver-page .gps-analysis-section
+div[style*="margin-top: 25px"][style*="padding: 20px"] {
+  background: linear-gradient(
+    135deg,
+    #eff6ff 0%,
+    #f8fafc 100%
+  );
+  border: 1px solid #bfdbfe;
+  border-radius: 12px;
+  padding: 24px;
+}
+
+.driver-page .gps-analysis-section
+div[style*="margin-top: 25px"][style*="padding: 20px"] h2 {
+  color: #1e40af;
+  margin-bottom: 18px;
+}
+
+.driver-page .gps-analysis-section
+div[style*="margin-top: 25px"][style*="padding: 20px"] p {
+  color: #334155;
+  font-size: 15px;
+  margin: 12px 0;
+}
+
+.driver-page .gps-analysis-section
+div[style*="margin-top: 25px"][style*="padding: 20px"] strong {
+  color: #172554;
+}
+
+/* ==========================================
+   WARNINGS + NOTIFICATIONS
+========================================== */
+
+.driver-message {
+  padding: 12px;
+  margin-top: 15px;
+  border-radius: 8px;
+  background: #fef2f2;
+  color: #b91c1c;
+}
+
+.driver-success-message {
+  margin-top: 15px;
+  padding: 14px 18px;
+  border-radius: 8px;
+  background: #dcfce7;
+  border: 1px solid #bbf7d0;
+  color: #166534;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.driver-error-message {
+  margin-top: 15px;
+  padding: 14px 18px;
+  border-radius: 8px;
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #b91c1c;
+  font-size: 14px;
+}
+
+/* ==========================================
+   DRIVER LOGIN
+========================================== */
+
+.driver-login-card {
+  width: 100%;
+  max-width: 450px;
+  margin: 80px auto;
+}
+
+.driver-login-card h1 {
+  color: #172554;
+}
+
+.driver-login-card p {
+  color: #64748b;
+}
+
+.driver-login-card form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.driver-login-card label {
+  font-weight: bold;
+  margin-top: 12px;
+}
+
+.driver-primary-button {
+  margin-top: 20px;
+}
+
+/* ==========================================
+   MOBILE RESPONSIVENESS
+========================================== */
+
+@media (max-width: 900px) {
+  .driver-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .driver-page {
+    padding: 25px 16px;
+  }
+
+  .driver-profile,
+  .driver-table-card,
+  .driver-page .profile-section,
+  .driver-page .gps-section,
+  .driver-page .students-section,
+  .driver-page .gps-analysis-section {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 700px) {
+  .driver-page {
+    padding: 20px 12px;
+  }
+
+  .driver-header,
+  .driver-page .dashboard-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .driver-header h1,
+  .driver-page .dashboard-header h1 {
+    font-size: 24px;
+  }
+
+  .driver-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .driver-search,
+  .driver-page .students-section form {
+    flex-direction: column;
+  }
+
+  .driver-filter {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .driver-page .students-section form input,
+  .driver-page .students-section form button {
+    width: 100%;
+  }
+
+  .driver-page .gps-section button,
+  .driver-page .gps-analysis-section > button {
+    width: 100%;
+  }
+
+  .driver-page .gps-analysis-section table {
+    min-width: 600px;
+  }
+
+  .driver-page .gps-analysis-section > h2 {
+    font-size: 20px;
+  }
+
+  .driver-page .profile-section,
+  .driver-page .gps-section,
+  .driver-page .students-section,
+  .driver-page .gps-analysis-section {
+    padding: 18px;
+  }
+}
+
+/* ==========================================
+   SMALL SCREENS
+========================================== */
+
+@media (max-width: 420px) {
+  .driver-page {
+    padding: 14px 8px;
+  }
+
+  .driver-page .dashboard-header h1 {
+    font-size: 21px;
+  }
+
+  .driver-page .gps-analysis-section h2 {
+    font-size: 19px;
+  }
+
+  .driver-page .profile-section,
+  .driver-page .gps-section,
+  .driver-page .students-section,
+  .driver-page .gps-analysis-section {
+    padding: 15px;
+    border-radius: 10px;
+  }
+}

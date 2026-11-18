@@ -1,0 +1,192 @@
+
+* {
+  box-sizing: border-box;
+}
+
+.welcome-page {
+  min-height: 100vh;
+  background: linear-gradient(
+    135deg,
+    #eff6ff 0%,
+    #f8fafc 50%,
+    #dbeafe 100%
+  );
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+  font-family: Arial, sans-serif;
+}
+
+.welcome-container {
+  width: 100%;
+  max-width: 1050px;
+}
+
+.welcome-header {
+  text-align: center;
+  margin-bottom: 45px;
+}
+
+.welcome-logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 30px;
+}
+
+.welcome-logo-icon {
+  font-size: 38px;
+}
+
+.welcome-logo h1 {
+  font-size: 34px;
+  color: #1d4ed8;
+  margin: 0;
+}
+
+.welcome-header h2 {
+  font-size: 36px;
+  color: #172554;
+  margin-bottom: 12px;
+}
+
+.welcome-header p {
+  font-size: 17px;
+  color: #64748b;
+  line-height: 1.7;
+}
+
+.role-cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 25px;
+}
+
+.role-card {
+  background: white;
+  border-radius: 18px;
+  padding: 40px 32px;
+  text-align: center;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+  border: 1px solid #e2e8f0;
+  transition: transform 0.2s ease,
+              box-shadow 0.2s ease;
+}
+
+.role-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 14px 35px rgba(0, 0, 0, 0.1);
+}
+
+.role-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 85px;
+  height: 85px;
+  border-radius: 22px;
+  margin: 0 auto 25px;
+  font-size: 40px;
+}
+
+.student-icon {
+  background: #dbeafe;
+}
+
+.driver-icon {
+  background: #dcfce7;
+}
+
+.role-card h3 {
+  font-size: 24px;
+  color: #172554;
+  margin-bottom: 15px;
+}
+
+.role-card > p {
+  font-size: 15px;
+  color: #64748b;
+  line-height: 1.8;
+  min-height: 85px;
+}
+
+.role-button {
+  display: block;
+  width: 100%;
+  border: none;
+  padding: 15px;
+  border-radius: 10px;
+  color: white;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.student-button {
+  background: #2563eb;
+}
+
+.student-button:hover {
+  background: #1d4ed8;
+}
+
+.driver-button {
+  background: #16a34a;
+}
+
+.driver-button:hover {
+  background: #15803d;
+}
+
+.role-secondary-button {
+  display: block;
+  width: 100%;
+  margin-top: 12px;
+  padding: 13px;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  background: white;
+  color: #1d4ed8;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.role-secondary-button:hover {
+  background: #eff6ff;
+}
+
+.role-card .driver-note {
+  margin-top: 20px;
+  min-height: auto;
+  font-size: 12px;
+  color: #94a3b8;
+}
+
+.welcome-footer {
+  text-align: center;
+  margin-top: 40px;
+  color: #94a3b8;
+  font-size: 13px;
+}
+
+@media (max-width: 700px) {
+  .role-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .welcome-header h2 {
+    font-size: 28px;
+  }
+
+  .role-card {
+    padding: 30px 24px;
+  }
+
+  .role-card > p {
+    min-height: auto;
+  }
+}
