@@ -5,6 +5,6 @@ mysql-connector-python
 python-dotenv
 python-multipart
 bcrypt
-python-jose[cryptography]
+PyJWT
 requests
 httpx
