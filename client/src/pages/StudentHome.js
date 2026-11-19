@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../style/StudentDashboard.css";
 
-const API_URL = "../config";
+import API_URL from "../config";
 
 function StudentHome() {
   const navigate = useNavigate();

@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../style/AdminDashboard.css";
 
-const API_URL = "../config";
+import API_URL from "../config";
 
 function AdminLogin() {
   const navigate = useNavigate();

@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../style/DriverDashboard.css";
 
-const API_URL = "../config";
+import API_URL from "../config";
 
 function DriverLogin() {
   const navigate = useNavigate();

@@ -7,7 +7,7 @@ import {
 
 import "../style/StudentDashboard.css";
 
-const API_URL = "../config";
+import API_URL from "../config";
 
 function StudentLogin() {
   const navigate = useNavigate();

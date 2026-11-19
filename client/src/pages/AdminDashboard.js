@@ -3,7 +3,7 @@ import { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../style/AdminDashboard.css";
 
-const API_URL = "../config";
+import API_URL from "../config";
 const PAGE_SIZE = 20;
 
 const emptyDriver = {
