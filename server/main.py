@@ -1163,16 +1163,17 @@ def login_admin(login: LoginRequest):
         admin = cursor.fetchone()
 
         if (
-            admin is None
-            or not password_hasher.verify(
-                login.password,
-                admin["password_hash"]
-            )
-        ):
-            raise HTTPException(
-                status_code=401,
-                detail="Invalid email or password"
-            )
+    admin is None
+    or not admin["password_hash"]
+    or not pwd_context.verify(
+        login.password,
+        admin["password_hash"]
+    )
+):
+    raise HTTPException(
+        status_code=401,
+        detail="Invalid email or password"
+    )
 
         token = create_access_token(
             admin["id"],
@@ -1537,9 +1538,9 @@ def admin_register_driver(
             )
 
         # Hash the driver's password.
-        hashed_password = password_hasher.hash(
-            driver.password
-        )
+        hashed_password = pwd_context.hash(
+    driver.password
+)
 
         # Insert driver with their assigned company.
         cursor.execute(
