@@ -1281,10 +1281,11 @@ def get_admin_stats(
 
         cursor.execute(
             """
-            SELECT COUNT(*) AS total
-            FROM student
-            WHERE has_school = TRUE
-            AND school_date = %s
+            SELECT COUNT(DISTINCT student_id) AS total
+FROM records
+WHERE has_school = TRUE
+  AND school_date = %s
+  AND created_at > NOW() - INTERVAL 24 HOUR
             """,
             (tomorrow,)
         )
