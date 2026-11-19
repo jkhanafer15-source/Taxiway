@@ -1358,21 +1358,42 @@ def admin_get_students(
         offset = (page - 1) * page_size
 
         cursor.execute(
-            f"""
-            SELECT
-                id, name, age, email,
-                school_name, school_address,
-                house_address, latitude, longitude,
-                has_school, school_date,
-                school_start_time, school_end_time
-            FROM student
-            {where_sql}
-            ORDER BY id DESC
-            LIMIT %s OFFSET %s
-            """,
-            tuple(params + [page_size, offset])
+    f"""
+    SELECT
+        s.id,
+        s.name,
+        s.age,
+        s.email,
+        s.school_name,
+        s.school_address,
+        s.house_address,
+        s.latitude,
+        s.longitude,
+
+        r.has_school,
+        r.school_date,
+        r.start_time AS school_start_time,
+        r.end_time AS school_end_time
+
+    FROM student s
+
+    LEFT JOIN records r
+        ON r.id = (
+            SELECT r2.id
+            FROM records r2
+            WHERE r2.student_id = s.id
+              AND r2.created_at > NOW() - INTERVAL 24 HOUR
+            ORDER BY r2.created_at DESC, r2.id DESC
+            LIMIT 1
         )
 
+    {where_sql}
+
+    ORDER BY s.id DESC
+    LIMIT %s OFFSET %s
+    """,
+    tuple(params + [page_size, offset])
+)
         students = cursor.fetchall()
         tomorrow = get_tomorrow().isoformat()
 
