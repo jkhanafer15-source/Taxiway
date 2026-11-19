@@ -2,8 +2,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../style/StudentDashboard.css";
+import API_URL from "../config";
 
-const API_URL = "../config";
 
 function StudentDashboard() {
   const navigate = useNavigate();
