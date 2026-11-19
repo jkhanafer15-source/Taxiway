@@ -68,14 +68,15 @@ app.add_middleware(
 # DATABASE
 # =========================================
 
-def get_db():
+def get_db_connection():
     return mysql.connector.connect(
-        host=os.getenv("DB_HOST", "localhost"),
-        user=os.getenv("DB_USER", "root"),
-        password=os.getenv("DB_PASSWORD"),
-        database=os.getenv("DB_NAME", "Taxiway")
+        host=os.environ["DB_HOST"],
+        port=int(os.environ.get("DB_PORT", "3306")),
+        user=os.environ["DB_USER"],
+        password=os.environ["DB_PASSWORD"],
+        database=os.environ["DB_NAME"],
+        connection_timeout=10
     )
-
 
 # =========================================
 # PYDANTIC MODELS
