@@ -1163,17 +1163,17 @@ def login_admin(login: LoginRequest):
         admin = cursor.fetchone()
 
         if (
-    admin is None
-    or not admin["password_hash"]
-    or not pwd_context.verify(
+            admin is None
+            or not admin["password_hash"]
+            or not pwd_context.verify(
         login.password,
         admin["password_hash"]
-    )
-):
-    raise HTTPException(
-        status_code=401,
-        detail="Invalid email or password"
-    )
+        )
+        ):
+            raise HTTPException(
+            status_code=401,
+            detail="Invalid email or password"
+             )
 
         token = create_access_token(
             admin["id"],
