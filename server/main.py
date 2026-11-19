@@ -56,7 +56,8 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=[
         "http://localhost:3000",
-        "http://127.0.0.1:3000"
+        "http://127.0.0.1:3000",
+        "https://taxiway-nu.vercel.app"
     ],
     allow_credentials=True,
     allow_methods=["*"],
@@ -68,7 +69,7 @@ app.add_middleware(
 # DATABASE
 # =========================================
 
-def get_db_connection():
+def get_db():
     return mysql.connector.connect(
         host=os.environ["DB_HOST"],
         port=int(os.environ.get("DB_PORT", "3306")),
